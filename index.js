@@ -9,6 +9,8 @@ const PORT = process.env.PORT || 5000;
 app.get('/scrape', (req, res, next) => {
   const url = 'http://www.imdb.com/title/tt1229340/';
 
+  const json = { title: '', release: '', rating: '' };
+
   request(url, (err, res, html) => {
     if (!err) {
       const $ = cheerio.load(html);
@@ -16,8 +18,6 @@ app.get('/scrape', (req, res, next) => {
       let title;
       let release;
       let rating;
-
-      const json = { title: '', release: '', rating: '' };
 
       $('header').filter(() => {
         const data = $(this);
