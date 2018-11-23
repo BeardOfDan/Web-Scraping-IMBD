@@ -38,7 +38,7 @@ app.get('/scrape/:titleNum', (req, res, next) => {
       });
     }
 
-    fs.writeFile('output.json', JSON.stringify(json, '', 2), (err) => {
+    fs.writeFile(`output/${titleNum}.json`, JSON.stringify(json, '', 2), (err) => {
       if (err) {
         console.log(`\nERROR!:\n${err}`);
       } else {
