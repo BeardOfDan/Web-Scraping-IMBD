@@ -6,7 +6,6 @@ const app = express();
 
 const PORT = process.env.PORT || 5000;
 
-
 app.get('/scrape/:titleNum', (req, res, next) => {
   const baseUrl = 'http://www.imdb.com/title/';
   const { titleNum } = req.params;
@@ -54,5 +53,3 @@ app.get('/scrape/:titleNum', (req, res, next) => {
 app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);
 });
-
-module.export = app;
