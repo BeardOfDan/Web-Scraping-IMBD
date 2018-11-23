@@ -41,7 +41,7 @@ app.get('/scrape/:titleNum', (req, res, next) => {
       if (err) {
         console.log(`\nERROR!:\n${err}`);
       } else {
-        console.log(`File successfully written to '${titleNum}.json'`);
+        console.log(`Data on the movie '${output.title}' was successfully written to '${titleNum}.json'`);
       }
     });
 
