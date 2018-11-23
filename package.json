@@ -1,0 +1,19 @@
+{
+  "name": "web-scraping-imdb",
+  "version": "1.0.0",
+  "description": "A basic web scraper",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BeardOfDan/Web-Scraping-IMDB.git"
+  },
+  "author": "Dan Roberts",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BeardOfDan/Web-Scraping-IMDB/issues"
+  },
+  "homepage": "https://github.com/BeardOfDan/Web-Scraping-IMDB#readme"
+}
