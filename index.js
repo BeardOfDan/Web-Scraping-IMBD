@@ -21,7 +21,6 @@ app.get('/scrape', (req, res, next) => {
       const $ = cheerio.load(html);
 
       let title;
-      let release;
       let rating;
 
 
@@ -33,12 +32,11 @@ app.get('/scrape', (req, res, next) => {
         console.log('title: ' + title);
 
         json.title = title;
+      });
 
-        release = data.children().last().children().text();
-
-        console.log('release: ' + release);
-
-        json.release = release;
+      $('#titleYear').filter(function () {
+        const data = $(this);
+        json.release = data.children().first().text();
       });
 
       $('.star-box-giga-star').filter(function () {
