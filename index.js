@@ -49,6 +49,8 @@ app.get('/scrape', (req, res, next) => {
     }
   });
 
+  // a message to a browser that tries to use this path
+  return res.send('Check your console');
 
 }); // end of get '/scrape'
 
