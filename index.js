@@ -11,7 +11,7 @@ app.get('/scrape/:titleNum', (req, res, next) => {
   const { titleNum } = req.params;
   const url = baseUrl + titleNum;
 
-  const json = { title: '', release: '', rating: '' };
+  const output = { title: '', release: '', rating: '' };
 
   request(url, (err, response, html) => {
     if (err) {
@@ -23,30 +23,30 @@ app.get('/scrape/:titleNum', (req, res, next) => {
 
       $('h1').filter(function () {
         const data = $(this);
-        json.title = data.contents().first().text().trim();
+        output.title = data.contents().first().text().trim();
       });
 
       $('#titleYear').filter(function () {
         const data = $(this);
-        json.release = data.children().first().text().trim();
+        output.release = data.children().first().text().trim();
       });
 
       $(`.ratingValue`).filter(function () {
         const data = $(this);
-        json.rating = data.text().trim();
+        output.rating = data.text().trim();
       });
     }
 
-    fs.writeFile(`output/${titleNum}.json`, JSON.stringify(json, '', 2), (err) => {
+    fs.writeFile(`output/${titleNum}.json`, JSON.stringify(output, '', 2), (err) => {
       if (err) {
         console.log(`\nERROR!:\n${err}`);
       } else {
-        console.log('File successfully written to \'output.json\'');
+        console.log(`File successfully written to '${titleNum}.json'`);
       }
     });
 
     // a message to a browser that tries to use this path
-    return res.send('Check your console');
+    return res.json(output);
   }); // end of request
 }); // end of get '/scrape'
 
