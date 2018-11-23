@@ -6,8 +6,11 @@ const app = express();
 
 const PORT = process.env.PORT || 5000;
 
-app.get('/scrape', (req, res, next) => {
-  const url = 'http://www.imdb.com/title/tt1229340/';
+
+app.get('/scrape/:titleNum', (req, res, next) => {
+  const baseUrl = 'http://www.imdb.com/title/';
+  const { titleNum } = req.params;
+  const url = baseUrl + titleNum;
 
   const json = { title: '', release: '', rating: '' };
 
