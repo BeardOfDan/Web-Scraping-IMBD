@@ -39,8 +39,20 @@ app.get('/scrape', (req, res, next) => {
       });
 
     }
+  }); // end of request
+
+  fs.writeFile('output.json', JSON.stringify(json, '', 2), (err) => {
+    if (err) {
+      console.log(`\nERROR!:\n${err}`);
+    } else {
+      console.log('File successfully written to \'output.json\'');
+    }
   });
+
+
 }); // end of get '/scrape'
+
+
 
 app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);
