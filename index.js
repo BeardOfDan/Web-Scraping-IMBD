@@ -9,27 +9,23 @@ const PORT = process.env.PORT || 5000;
 app.get('/scrape', (req, res, next) => {
   const url = 'http://www.imdb.com/title/tt1229340/';
 
-  const json = { title: '', release: '', rating: '', time: Date.now() };
+  const json = { title: '', release: '', rating: ''};
 
   request(url, (err, response, html) => {
     if (err) {
       console.log('ERROR: ' + err);
       return res.send(err);
     } else { // no error
-      console.log('no err...');
-
       const $ = cheerio.load(html);
 
-      let title;
       let rating;
 
-
-      $('.header').filter(function () {
+      $('h1').filter(function () {
         const data = $(this);
+        let title;
 
-        title = data.children().first().text();
-
-        console.log('title: ' + title);
+        title = data.contents().first().text();
+        title = title.slice(0, title.length - 1); // remove trailing space
 
         json.title = title;
       });
